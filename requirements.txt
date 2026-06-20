@@ -1,0 +1,6 @@
+modelscope
+datasets
+transformers
+peft
+torch
+bitsandbytes>=0.46.1

@@ -1,0 +1,37 @@
+# 路径配置
+model_dir: "models/Qwen3-1.7B"           # 本地模型目录
+data_path: "poetry_raw.jsonl"       # 原始对话数据 (用户准备)
+processed_data_path: "processed_dataset"  # 预处理后数据集保存路径
+output_dir: "./poetry_lora_output"  # 训练输出
+adapter_dir: "./poetry_lora_adapter"# LoRA adapter 保存目录
+
+# 数据参数
+max_length: 1024
+system_prompt: "你是一个才华横溢的诗人，根据给定的创作背景生成一首诗词。"
+
+# 模型参数
+model_name: "Qwen/Qwen3-1.7B"       # 仅作标识
+
+# LoRA 参数
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.05
+target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+
+# 训练参数
+num_epochs: 1  # 1-3
+batch_size: 1
+gradient_accumulation_steps: 4
+learning_rate: 2.0e-4
+logging_steps: 1
+save_steps: 50
+save_total_limit: 2
+seed: 42
+
+# 生成验证参数
+max_new_tokens: 1000
+temperature: 0.7
+top_p: 0.9
+test_backgrounds:
+  - "背景：隆冬大雪，老友来访，围炉夜话，回忆往昔。"
+  - "背景：中秋月夜，游子漂泊异乡，望月思乡。"
